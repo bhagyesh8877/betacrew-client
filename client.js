@@ -1,8 +1,8 @@
 const net = require('net');
 const fs = require('fs');
 
-// Connection details
-const HOST = '192.168.1.8';
+
+const HOST = '192.168.1.8'; // Get your Ip address by command 'ipconfig' command use ipv4 address
 const PORT = 3000;
 
 const client = new net.Socket();
@@ -30,13 +30,13 @@ client.on('close', () => {
 
 function streamAllPackets() {
   const buffer = Buffer.alloc(2);
-  buffer.writeUInt8(1, 0); // callType = 1 (Stream All Packets)
-  buffer.writeUInt8(0, 1); // resendSeq = 0 (Not used for this call type)
+  buffer.writeUInt8(1, 0); 
+  buffer.writeUInt8(0, 1); 
   client.write(buffer);
 }
 
 function processBuffer() {
-  const packetSize = 17; // Each packet is 17 bytes
+  const packetSize = 17; 
 
   while (buffer.length >= packetSize) {
     const packet = buffer.slice(0, packetSize);
@@ -51,7 +51,7 @@ function processBuffer() {
     receivedPackets.push({ symbol, buySellIndicator, quantity, price, packetSeq });
   }
 
-  if (buffer.length < packetSize) { // Assuming the last packet will be less than the buffer size
+  if (buffer.length < packetSize) { 
     checkMissingSequences();
   }
 }
@@ -85,8 +85,8 @@ function requestMissingPackets() {
   missingSequences.delete(seq);
 
   const buffer = Buffer.alloc(2);
-  buffer.writeUInt8(2, 0); // callType = 2 (Resend Packet)
-  buffer.writeUInt8(seq, 1); // resendSeq = seq
+  buffer.writeUInt8(2, 0); 
+  buffer.writeUInt8(seq, 1); 
 
   client.write(buffer);
 }
@@ -101,6 +101,6 @@ client.on('end', () => {
 
 function generateJSONOutput() {
   const jsonOutput = JSON.stringify(receivedPackets, null, 2);
-  fs.writeFileSync('output1.json', jsonOutput);
+  fs.writeFileSync('Output.json', jsonOutput);
   console.log('JSON file generated: output.json');
 }
