@@ -1,7 +1,7 @@
 Steps to run the project:-
 
 Get your IP address by using command 'ipconfig' in terminal and copy the ipv4 address 
-something like mine 192.168.1.8 and paste in the client.js file on line number 5.
+something like mine '192.168.1.8' and paste in the client.js file on line number 5.
 
 1. Clone repository.
 
