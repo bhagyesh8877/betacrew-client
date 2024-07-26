@@ -1,0 +1,16 @@
+[
+  {
+    "symbol": "AAPL",
+    "buySellIndicator": "B",
+    "quantity": 50,
+    "price": 100,
+    "packetSeq": 1
+  },
+  {
+    "symbol": "AAPL",
+    "buySellIndicator": "B",
+    "quantity": 30,
+    "price": 98,
+    "packetSeq": 2
+  }
+]
